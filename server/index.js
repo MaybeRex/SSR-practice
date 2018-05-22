@@ -10,7 +10,7 @@ app.use(express.static('public'));
 
 // endpoint
 app.get('/', (req, res) => {
-  res.send(renderer());
+  res.send(renderer(req));
 });
 
 app.listen(5000, () => {
