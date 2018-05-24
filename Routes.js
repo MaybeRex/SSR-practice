@@ -1,6 +1,6 @@
 import React from 'react';
-import Home from './client/components/Home'
-import UserList from './client/components/UserList';
+import Home from './client/pages/Home'
+import UserList from './client/pages/UserList';
 
 export default [{
   path: '/',
