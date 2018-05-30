@@ -1,12 +1,10 @@
-import axios from 'axios';
-
 class Users {
   static FETCH_USERS = 'FETCH_USERS';
-
-  static fetchUsers = () => async dispatch => {
+  // custom axios instance
+  static fetchUsers = () => async (dispatch, getState, axios) => {
     let res;
     try {
-      res = await axios.get('https://react-ssr-api.herokuapp.com/users');
+      res = await axios.get('https://react-ssr-api.herokuapp.com/users/xss');
     } catch (e) {
       console.error(e);
     }
