@@ -1,5 +1,7 @@
 class Users {
   static FETCH_USERS = 'FETCH_USERS';
+  static FETCH_AUTH_STATUS = 'FETCH_AUTH_STATUS'
+
   // custom axios instance
   static fetchUsers = () => async (dispatch, getState, axios) => {
     let res;
@@ -13,6 +15,18 @@ class Users {
       type: Users.FETCH_USERS,
       payload: res.data
     });
+  }
+
+  static getAuthStatus = () => async (dispatch, getState, axios) => {
+    try {
+      const res = await axios.get('/current_user');
+      dispatch({
+        type: FETCH_AUTH_STATUS,
+        payload: res.data
+      });
+    } catch (e) {
+      throw e;
+    }
   }
 }
 
