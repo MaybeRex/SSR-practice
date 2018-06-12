@@ -7,10 +7,10 @@ import serialize from 'serialize-javascript';
 
 import Routes from '../../Routes';
 
-export default ({ path }, store) => {
+export default ({ path }, store, context) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={path} context={{}}>
+      <StaticRouter location={path} context={context}>
         <div>
           {renderRoutes(Routes)}
         </div>
@@ -21,6 +21,7 @@ export default ({ path }, store) => {
   return`
     <html>
       <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
       </head>
       <body>
         <div id="root">${content}</div>

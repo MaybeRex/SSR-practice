@@ -1,19 +1,19 @@
-import Users from '../actions/users';
+import Admins from '../actions/admin';
 
 const defaultState = {
-  isAuth: false
+  adminList: []
 }
 
 export default (state = defaultState, action = {}) => {
   switch (action.type) {
-    case Users.FETCH_AUTH_STATUS: {
+    case Admins.FETCH_ADMINS: {
       return {
         ...state,
-        isAuth: action.payload || false
-      };
+        adminList: action.payload
+      }
     }
     default: {
-      return {...state};
+      return state;
     }
   }
 }

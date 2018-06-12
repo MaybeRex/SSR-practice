@@ -15,9 +15,9 @@ class UsersList extends Component {
     return dispatch(Users.fetchUsers());
   }
 
-  // componentDidMount() {
-  //   this.props.fetchUsers();
-  // }
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
 
   renderUsers = () => this.props.userList.map(user => (
     <li key={user.id}>

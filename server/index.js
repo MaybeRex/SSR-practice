@@ -10,13 +10,12 @@ import Routes from '../Routes';
 
 const app = express();
 
-// middleware
 app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
-  proxyReqPotDecorator(opts) { // weird stuff for google auth
-    opts.headers['x-forwarded-host'] = 'localhost:5000';
+  proxyReqOptDecorator(opts) {
+    opts.headers['x-forwarded-host'] = 'localhost:3000';
     return opts;
   }
-}))
+}));
 
 app.use(express.static('public'));
 
@@ -29,10 +28,17 @@ app.get('*', (req, res) => {
   })
 
   Promise.all(componentFetches).then(() => {
-    res.send(renderer(req, store));
+    const context = {};
+    const content = renderer(req, store, context);
+
+    if(context.notFound) {
+      res.status(404);
+    }
+
+    res.send(content);
   });
 });
 
-app.listen(5000, () => {
-  console.log('listening on port 5000');
+app.listen(3000, () => {
+  console.log('listening on port 3000');
 });

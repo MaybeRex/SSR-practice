@@ -20,9 +20,10 @@ class Users {
   static getAuthStatus = () => async (dispatch, getState, axios) => {
     try {
       const res = await axios.get('/current_user');
+
       dispatch({
-        type: FETCH_AUTH_STATUS,
-        payload: res.data
+        type: Users.FETCH_AUTH_STATUS,
+        payload: res.data === '' ? false : res.data
       });
     } catch (e) {
       throw e;
