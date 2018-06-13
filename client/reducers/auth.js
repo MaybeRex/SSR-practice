@@ -1,7 +1,7 @@
 import Users from '../actions/users';
 
 const defaultState = {
-  isAuth: false
+  isAuth: null
 }
 
 export default (state = defaultState, action = {}) => {

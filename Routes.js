@@ -5,6 +5,8 @@ import UserList from './client/pages/UserList';
 import NotFound from './client/pages/NotFound';
 import Admin from './client/pages/Admin';
 
+import withAuth from './client/hoc/withAuth'
+
 export default [{
   component: App,
   loadData: App.loadData,
@@ -18,7 +20,7 @@ export default [{
     loadData: UserList.loadData,
   }, {
     path: '/admins',
-    component: Admin,
+    component: withAuth(Admin),
     loadData: Admin.loadData,
   }, {
     component: NotFound

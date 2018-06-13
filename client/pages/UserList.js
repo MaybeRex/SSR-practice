@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { Helmet } from 'react-helmet';
+
 import Users from '../actions/users';
 
 class UsersList extends Component {
@@ -25,14 +28,25 @@ class UsersList extends Component {
     </li>
   ))
 
+  renderHead = () => (
+    <Helmet>
+      <title>{`${this.props.userList.length} Users Loaded`}</title>
+      <meta property="og:title" content="Users App" />
+    </Helmet>
+  )
+
   render() {
     return (
-      <div>
-        Here is a list of users
-        <ul>
-          {this.renderUsers()}
-        </ul>
-      </div>
+      <React.Fragment>
+        <div>
+          Here is a list of users
+          <ul>
+            {this.renderUsers()}
+          </ul>
+        </div>
+
+        {this.renderHead()}
+      </React.Fragment>
     );
   }
 }
